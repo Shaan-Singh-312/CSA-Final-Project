@@ -4,16 +4,28 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+/// Panel for UI for writing to files
 public class EditorPanel extends JPanel implements ActionListener {
+    /// Name of file being written to
     private final String name;
+    /// Refence to the main frame for changing current frame
     private final AppFrame frame;
+    /// Location for user to enter term
     private final JTextField termEntry;
+    /// Location for user to enter definition
     private final JTextPane defEntry;
+    /// Button for user to click after term and definition are both written to
     private final JButton submit;
+    /// Button to stop adding new information
     private final JButton complete;
+    /// VocabFile to store user input
     private final VocabFile data;
+    /// Timer for creating delay/show user feedback
     private final Timer timer;
 
+    /// Creates a new EditorPanel object that writes to file with name n
+    /// @param f A refence to the frame object that UpdatePanel is currently added to.
+    /// @param n Name of file being written to
     public EditorPanel(AppFrame f, String n) {
         super();
         name =n;
@@ -56,6 +68,8 @@ public class EditorPanel extends JPanel implements ActionListener {
     }
 
 
+    /// Detects button clicks and timer pulses to save data and return to homepage
+    /// Can destroy current object
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submit){

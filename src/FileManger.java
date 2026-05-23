@@ -5,7 +5,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class FileManger {
+/// Manages reading and writing to external files
+public final class FileManger {
+
+    /// Private constructor to prevent creation of FileManger objects
+    private FileManger(){}
+
+    /// writes to a file the data inside of vocab file
+    /// @param vocab VocabFile with data being written
+    /// @param f File where data is being written to
     public static void save(VocabFile vocab, File f){
         try{
             if(f.createNewFile()){
@@ -21,6 +29,10 @@ public class FileManger {
         }
     }
 
+    /// Reads data from file and saves it as a VocabFile object
+    /// @param f File being read from
+    /// @return A VocabFile object containing the contents of File f
+    /// @throws FileNotFoundException If File f does not exist
     public static VocabFile load(File f) throws FileNotFoundException {
         Scanner s = new Scanner(f);
         VocabFile voacb = new VocabFile();
@@ -32,6 +44,8 @@ public class FileManger {
         return voacb;
     }
 
+    /// Searches for all files in the directory "DataFiles"
+    /// @return A String array of the names of the files without the file extension, the last element is always the string "Add New ++"
     public static String[] findFiles(){
         File f = new File("DataFiles");
         String[] names = f.list();

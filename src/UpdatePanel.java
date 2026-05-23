@@ -2,13 +2,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+/// Basic Panel to validate new file creation
 public class UpdatePanel extends JPanel implements ActionListener {
+    /// Location for use to write new file name
     private final JTextField nameOfFileInput;
+    /// Stores the string the user enters within nameOfFileInput
     private String name;
+    /// Displays instructions for user
     private final Label text;
+    /// Refence to the main frame for changing current frame
     private final AppFrame frame;
 
+    /// Creates a new UpdatePanel object
+    /// @param f A refence to the frame object that UpdatePanel is currently added to.
     public UpdatePanel(AppFrame f){
         super();
         name = null;
@@ -26,6 +32,8 @@ public class UpdatePanel extends JPanel implements ActionListener {
         add(nameOfFileInput);
     }
 
+    /// Detects 'enter key' press and validates if the given file name is valid (not already existing file)
+    /// Can destroy current object
     @Override
     public void actionPerformed(ActionEvent e) {
         name = nameOfFileInput.getText();
