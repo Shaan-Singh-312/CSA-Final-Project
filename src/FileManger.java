@@ -1,11 +1,24 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileManger {
     public static void save(VocabFile vocab, File f){
-        //TODO: Implement This method
+        try{
+            if(f.createNewFile()){
+                FileWriter writer = new FileWriter(f);
+                for (int i = 0; i < vocab.size(); i++){
+                    writer.write(vocab.getTerm(i) + "|" + vocab.getDef(i) + "\n");
+                }
+                writer.close();
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static VocabFile load(File f) throws FileNotFoundException {

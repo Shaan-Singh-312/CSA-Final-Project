@@ -14,15 +14,6 @@ public class VocabFile  {
         file.add(new String[] {term, def});
     }
 
-    public String findDefForTerm(String term){
-        for(String[] arr : file){
-            if (arr[0].equals(term)){
-                return arr[1];
-            }
-        }
-        return null;
-    }
-
     public void randomize(){
         Collections.shuffle(file);
     }

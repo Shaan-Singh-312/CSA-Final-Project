@@ -12,7 +12,7 @@ public class StartPanel extends JPanel implements ActionListener {
     public StartPanel(AppFrame f){
         super();
         frame = f;
-        setLayout(new GridLayout(3,1));
+
         list = new JComboBox<>(FileManger.findFiles());
         list.setFont(new Font("Arial", Font.BOLD, 20));
         add(list);

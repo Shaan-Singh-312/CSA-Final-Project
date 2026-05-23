@@ -2,13 +2,13 @@ import javax.swing.*;
 import java.io.File;
 
 public class AppFrame extends JFrame {
-    private final StartPanel start;
+    private StartPanel start;
     private UpdatePanel updatePanel;
     private QuizPanel quizPanel;
 
     public AppFrame() {
         setTitle("Flashcard App");
-        setSize(600, 400);
+        setSize(500, 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         start = new StartPanel(this);
         updatePanel = null;
@@ -16,6 +16,16 @@ public class AppFrame extends JFrame {
         add(start);
         setContentPane(start);
         setVisible(true);
+    }
+
+    public void setStart(){
+        if(updatePanel != null) remove(updatePanel);
+        if(quizPanel != null) remove(quizPanel);
+        start = new StartPanel(this);
+        add(start);
+        setContentPane(start);
+        revalidate();
+        repaint();
     }
 
     public void setEditor(){
@@ -28,7 +38,7 @@ public class AppFrame extends JFrame {
     }
 
     public  void setQuiz(String filename){
-        //remove(start);
+        remove(start);
         if (updatePanel != null) remove(updatePanel);
         quizPanel = new QuizPanel(this, new File("DataFiles/" + filename + ".txt"));
         add(quizPanel);
