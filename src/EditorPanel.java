@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 
 /// Panel for UI for writing to files
 public class EditorPanel extends JPanel implements ActionListener {
@@ -19,18 +20,25 @@ public class EditorPanel extends JPanel implements ActionListener {
     /// Button to stop adding new information
     private final JButton complete;
     /// VocabFile to store user input
-    private final VocabFile data;
+    private VocabFile data;
     /// Timer for creating delay/show user feedback
     private final Timer timer;
 
     /// Creates a new EditorPanel object that writes to file with name n
     /// @param f A refence to the frame object that UpdatePanel is currently added to.
     /// @param n Name of file being written to
-    public EditorPanel(AppFrame f, String n) {
+    /// @param isBeingAddedTo Is true if the Editor is adding information to a preexisting file
+    public EditorPanel(AppFrame f, String n, boolean isBeingAddedTo) {
         super();
         name =n;
         frame = f;
-        data = new VocabFile();
+        try {
+            if(isBeingAddedTo) data = FileManger.load(new File("DataFiles/" + name + ".txt"));
+            else data = new VocabFile();
+        } catch (FileNotFoundException e) {
+            data = new VocabFile();
+        }
+
         timer = new Timer(300, this);
 
         Label textTerm = new Label("Term:        ");

@@ -39,8 +39,10 @@ public class StartPanel extends JPanel implements ActionListener {
         if (e.getSource().equals(button) && list.getSelectedItem() != null){
             if ((list.getSelectedItem().toString()).equals("Add New ++")){
                 frame.setEditor();
-            }
-            else {
+            } else if (list.getSelectedItem().toString().equals("Update Old")) {
+                frame.setRevise();
+
+            } else {
                 frame.setQuiz(list.getSelectedItem().toString());
             }
         }

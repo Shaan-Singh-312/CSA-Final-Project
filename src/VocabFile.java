@@ -45,6 +45,33 @@ public class VocabFile  {
         return file.get(i)[1];
     }
 
+    /// Turns the contents of VocabFile into a String array
+    /// @return A string array with the key and def pairs as a concatenated string separated by a |
+    public String[] toStringArray(){
+        String[] strings = new String[this.size()];
+        for (int i = 0; i < this.size(); i++) {
+            strings[i] = getTerm(i) + "|" + getDef(i);
+        }
+        return strings;
+    }
+
+    /// Removes the pair of values at a given index
+    /// @param i the index of the item to be removed
+    public void remove(int i){
+        file.remove(i);
+    }
+
+    /// Removes all instances of a term and def pair in the list
+    /// @param str term and def pair separated by a |
+    public void remove(String str){
+        for (int i = 0; i < this.size(); i++) {
+            if((getTerm(i) + "|" + getDef(i)).equals(str)){
+                remove(i);
+                i--;
+            }
+        }
+    }
+
     /// Displays VocabFile in a readable format of (Key,Value), (Key, Value), ...
     @Override
     public String toString() {

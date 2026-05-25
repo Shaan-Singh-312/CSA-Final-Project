@@ -20,8 +20,6 @@ public class UpdatePanel extends JPanel implements ActionListener {
         name = null;
         frame = f;
 
-
-
         text = new Label("Enter the name of new data set:");
         text.setFont(new Font("Arial", Font.BOLD, 20));
         add(text);
@@ -46,7 +44,7 @@ public class UpdatePanel extends JPanel implements ActionListener {
             }
         }
         if(unique){
-            EditorPanel editorPanel = new EditorPanel(frame, name);
+            EditorPanel editorPanel = new EditorPanel(frame, name, false);
             frame.add(editorPanel);
             frame.setContentPane(editorPanel);
             frame.revalidate();

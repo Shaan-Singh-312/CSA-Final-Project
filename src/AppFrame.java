@@ -9,6 +9,7 @@ public class AppFrame extends JFrame {
     private UpdatePanel updatePanel;
     /// Holds the current QuizPanel object on the screen, if there is not one, is null
     private QuizPanel quizPanel;
+    private ChoseRevisePanel revisePanel;
 
     /// Creates a new AppFrame object with a title of "Flashcard app"
     /// Adds a Start Panel object to the frame
@@ -19,6 +20,7 @@ public class AppFrame extends JFrame {
         start = new StartPanel(this);
         updatePanel = null;
         quizPanel = null;
+        revisePanel = null;
         add(start);
         setContentPane(start);
         setVisible(true);
@@ -34,6 +36,10 @@ public class AppFrame extends JFrame {
         if(quizPanel != null) {
             remove(quizPanel);
             quizPanel = null;
+        }
+        if(revisePanel != null) {
+            remove(revisePanel);
+            revisePanel = null;
         }
         start = new StartPanel(this);
         add(start);
@@ -53,6 +59,10 @@ public class AppFrame extends JFrame {
             remove(quizPanel);
             quizPanel = null;
         }
+        if(revisePanel != null) {
+            remove(revisePanel);
+            revisePanel = null;
+        }
         updatePanel = new UpdatePanel(this);
         add(updatePanel);
         setContentPane(updatePanel);
@@ -71,9 +81,35 @@ public class AppFrame extends JFrame {
             remove(updatePanel);
             updatePanel = null;
         }
+        if(revisePanel != null) {
+            remove(revisePanel);
+            revisePanel = null;
+        }
         quizPanel = new QuizPanel(this, new File("DataFiles/" + filename + ".txt"));
         add(quizPanel);
         setContentPane(quizPanel);
+        revalidate();
+        repaint();
+    }
+
+    /// Removes all other Panel objects and creates a new ChoseRevisePanel object
+    /// Places the ChoseRevisePanel object on the screen
+    public void setRevise(){
+        if (start != null){
+            remove(start);
+            start = null;
+        }
+        if(updatePanel != null) {
+            remove(updatePanel);
+            updatePanel = null;
+        }
+        if(quizPanel != null) {
+            remove(quizPanel);
+            quizPanel = null;
+        }
+        revisePanel = new ChoseRevisePanel(this);
+        add(revisePanel);
+        setContentPane(revisePanel);
         revalidate();
         repaint();
     }

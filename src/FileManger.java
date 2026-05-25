@@ -12,18 +12,20 @@ public final class FileManger {
     private FileManger(){}
 
     /// writes to a file the data inside of vocab file
+    /// If file already exists, it is deleted then recreated as a new empty file of the same name
     /// @param vocab VocabFile with data being written
     /// @param f File where data is being written to
     public static void save(VocabFile vocab, File f){
         try{
-            if(f.createNewFile()){
-                FileWriter writer = new FileWriter(f);
-                for (int i = 0; i < vocab.size(); i++){
-                    writer.write(vocab.getTerm(i) + "|" + vocab.getDef(i) + "\n");
-                }
-                writer.close();
+            if(!f.createNewFile()){
+                f.delete();
+                f.createNewFile();
             }
-
+            FileWriter writer = new FileWriter(f);
+            for (int i = 0; i < vocab.size(); i++){
+                writer.write(vocab.getTerm(i) + "|" + vocab.getDef(i) + "\n");
+            }
+            writer.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -44,8 +46,9 @@ public final class FileManger {
         return voacb;
     }
 
+
     /// Searches for all files in the directory "DataFiles"
-    /// @return A String array of the names of the files without the file extension, the last element is always the string "Add New ++"
+    /// @return A String array of the names of the files without the file extension, the second to last element is always the string "Add New ++" and the last element is always "Update Old"
     public static String[] findFiles(){
         File f = new File("DataFiles");
         String[] names = f.list();
@@ -56,6 +59,7 @@ public final class FileManger {
             }
         }
         namesList.add("Add New ++");
+        namesList.add("Update Old");
         names = new String[namesList.size()];
         for (int i = 0; i < names.length; i++) {
             names[i] = namesList.get(i);
