@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-
 import java.util.Collections;
 
 /// Custom Data type to store data for quiz

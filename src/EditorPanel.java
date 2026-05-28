@@ -42,34 +42,34 @@ public class EditorPanel extends JPanel implements ActionListener {
         timer = new Timer(300, this);
 
         Label textTerm = new Label("Term:        ");
-        textTerm.setFont(new Font("Arial", Font.BOLD, 20));
+        textTerm.setFont(f.APP_FONT);
         add(textTerm);
 
         termEntry = new JTextField();
         termEntry.setBorder(null);
-        termEntry.setFont(new Font("Arial", Font.BOLD, 20));
+        termEntry.setFont(f.APP_FONT);
         termEntry.setPreferredSize(new Dimension(getFontMetrics(termEntry.getFont()).charWidth('m') *20, 27 * 2));
 
         add(termEntry);
 
         Label textDef = new Label("Definition: ");
-        textDef.setFont(new Font("Arial", Font.BOLD, 20));
+        textDef.setFont(f.APP_FONT);
         add(textDef);
 
         defEntry = new JTextPane();
-        defEntry.setFont(new Font("Arial", Font.BOLD, 20));
+        defEntry.setFont(f.APP_FONT);
         defEntry.setPreferredSize(new Dimension(getFontMetrics(termEntry.getFont()).charWidth('m') *20,27 * 5));
 
         add(defEntry);
 
         submit = new JButton("ADD");
-        submit.setFont(new Font("Arial", Font.BOLD, 20));
+        submit.setFont(f.APP_FONT);
         submit.setLayout(new GridLayout(1,2));
         submit.addActionListener(this);
         add(submit);
 
         complete = new JButton("Finalize and return to start");
-        complete.setFont(new Font("Arial", Font.BOLD, 20));
+        complete.setFont(f.APP_FONT);
         complete.setLayout(new GridLayout(1,2));
         complete.addActionListener(this);
         add(complete);
@@ -78,20 +78,26 @@ public class EditorPanel extends JPanel implements ActionListener {
 
     /// Detects button clicks and timer pulses to save data and return to homepage
     /// Can destroy current object
+
+
+    private void saveInput(){
+        data.add(termEntry.getText(), defEntry.getText());
+        submit.setText("ADDED");
+        termEntry.setText("");
+        defEntry.setText("");
+        timer.start();
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == submit){
-            data.add(termEntry.getText(), defEntry.getText());
-            termEntry.setText("");
-            defEntry.setText("");
-            submit.setText("ADDED");
-            timer.start();
+        if (e.getSource() == submit) {
+           saveInput();
         }
         if(e.getSource() == timer){
             timer.stop();
             submit.setText("ADD");
         }
         if(e.getSource() == complete){
+            saveInput();
             try{
                 FileManger.save(data, new File("DataFiles/" + name+ ".txt"));
                 frame.setStart();

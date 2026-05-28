@@ -7,8 +7,8 @@ import java.io.FileNotFoundException;
 
 /// Creates UI for the user to take the quiz and gives the user a score paced on their answers
 public class QuizPanel extends JPanel implements ActionListener {
-    /// Stores current user score
-    private int score;
+    // /// Stores current user score
+    //private int score;
     /// Stores number of question the user is on minus one
     private int questionNum;
     /// Refence to the main frame for changing current frame
@@ -41,13 +41,13 @@ public class QuizPanel extends JPanel implements ActionListener {
         }
         setLayout(new GridLayout(3,1));
 
-        score = 0;
+        //score = 0;
         textTerm = new Label("Quiz");
-        textTerm.setFont(new Font("Arial",Font.BOLD, 20));
+        textTerm.setFont(f.APP_FONT);
         add(textTerm);
 
         input = new JTextArea();
-        input.setFont(new Font("Arial", Font.PLAIN, 20));
+        input.setFont(f.APP_FONT);
         input.setLineWrap(true);
         input.setWrapStyleWord(true);
         add(input);
@@ -77,7 +77,7 @@ public class QuizPanel extends JPanel implements ActionListener {
             textTerm.setText(data.getTerm(questionNum));
         }
         else {
-            textTerm.setText("You have Completed the quiz. Final score: " + score + "/" + data.size());
+            textTerm.setText("You have Completed the quiz");
             remove(submitButton);
             remove(input);
             add(homeButton);
@@ -92,7 +92,7 @@ public class QuizPanel extends JPanel implements ActionListener {
         String answer = input.getText().toUpperCase();
         if (answer.equals(data.getDef(questionNum).toUpperCase())){
             textTerm.setText("Correct");
-            score++;
+            //score++;
         }
         else textTerm.setText("Sorry the answer was: " + data.getDef(questionNum));
         input.setText("");

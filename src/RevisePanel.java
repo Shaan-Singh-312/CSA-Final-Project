@@ -19,7 +19,7 @@ public class RevisePanel extends JPanel implements ActionListener {
     /// Name of file
     private final String name;
 
-    /// Creates a new RevisePanel object
+    /// Creates a new RevisePanel object for removing items from a file
     /// @param f A refence to the frame object that RevisePanel is currently added to.
     /// @param str Name of file being revised
     public RevisePanel(AppFrame f, String str){

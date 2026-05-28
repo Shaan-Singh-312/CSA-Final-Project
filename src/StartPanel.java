@@ -23,11 +23,11 @@ public class StartPanel extends JPanel implements ActionListener {
         frame = f;
 
         list = new JComboBox<>(FileManger.findFiles());
-        list.setFont(new Font("Arial", Font.BOLD, 20));
+        list.setFont(f.APP_FONT);
         add(list);
 
         button = new JButton("Next");
-        button.setFont(new Font("Arial", Font.BOLD, 20));
+        button.setFont(f.APP_FONT);
         button.addActionListener(this);
         add(button);
     }

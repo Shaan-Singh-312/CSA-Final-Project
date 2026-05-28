@@ -21,11 +21,11 @@ public class UpdatePanel extends JPanel implements ActionListener {
         frame = f;
 
         text = new Label("Enter the name of new data set:");
-        text.setFont(new Font("Arial", Font.BOLD, 20));
+        text.setFont(f.APP_FONT);
         add(text);
 
         nameOfFileInput = new JTextField(20);
-        nameOfFileInput.setFont(new Font("Arial", Font.BOLD, 20));
+        nameOfFileInput.setFont(f.APP_FONT);
         nameOfFileInput.addActionListener(this);
         add(nameOfFileInput);
     }

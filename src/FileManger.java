@@ -23,7 +23,7 @@ public final class FileManger {
             }
             FileWriter writer = new FileWriter(f);
             for (int i = 0; i < vocab.size(); i++){
-                writer.write(vocab.getTerm(i) + "|" + vocab.getDef(i) + "\n");
+                writer.write(vocab.getTerm(i) + "\u0000" + vocab.getDef(i) + "\n");
             }
             writer.close();
         } catch (IOException e) {
@@ -39,7 +39,7 @@ public final class FileManger {
         Scanner s = new Scanner(f);
         VocabFile voacb = new VocabFile();
         while(s.hasNextLine()){
-            String[] data = s.nextLine().split("[|]");
+            String[] data = s.nextLine().split("\u0000");
             voacb.add(data[0], data[1]);
         }
         s.close();

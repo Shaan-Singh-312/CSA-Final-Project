@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 /// Creates and manages a new JFrame to display the application
 
@@ -10,6 +11,7 @@ public class AppFrame extends JFrame {
     /// Holds the current QuizPanel object on the screen, if there is not one, is null
     private QuizPanel quizPanel;
     private ChoseRevisePanel revisePanel;
+    public final Font APP_FONT;
 
     /// Creates a new AppFrame object with a title of "Flashcard app"
     /// Adds a Start Panel object to the frame
@@ -21,6 +23,7 @@ public class AppFrame extends JFrame {
         updatePanel = null;
         quizPanel = null;
         revisePanel = null;
+        APP_FONT = new Font("Arial", Font.BOLD, 20);
         add(start);
         setContentPane(start);
         setVisible(true);
