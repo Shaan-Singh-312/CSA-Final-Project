@@ -39,7 +39,7 @@ public class EditorPanel extends JPanel implements ActionListener {
             data = new VocabFile();
         }
 
-        timer = new Timer(300, this);
+        timer = new Timer(600, this);
 
         Label textTerm = new Label("Term:        ");
         textTerm.setFont(f.APP_FONT);
@@ -62,7 +62,7 @@ public class EditorPanel extends JPanel implements ActionListener {
 
         add(defEntry);
 
-        submit = new JButton("ADD");
+        submit = new JButton("                 ADD                 ");
         submit.setFont(f.APP_FONT);
         submit.setLayout(new GridLayout(1,2));
         submit.addActionListener(this);
@@ -80,9 +80,17 @@ public class EditorPanel extends JPanel implements ActionListener {
     /// Can destroy current object
 
 
-    private void saveInput(){
-        data.add(termEntry.getText(), defEntry.getText());
-        submit.setText("ADDED");
+    private void saveInput() {
+        if (termEntry.getText().isEmpty() && defEntry.getText().isEmpty()) {
+            submit.setText("Invalid Please enter a term and def");
+        } else if (termEntry.getText().isEmpty()) {
+            submit.setText("Invalid Please enter a term");
+        } else if (defEntry.getText().isEmpty()) {
+            submit.setText("Invalid Please enter a def");
+        }else {
+                data.add(termEntry.getText(), defEntry.getText());
+                submit.setText("                 ADDED               ");
+        }
         termEntry.setText("");
         defEntry.setText("");
         timer.start();
@@ -94,7 +102,7 @@ public class EditorPanel extends JPanel implements ActionListener {
         }
         if(e.getSource() == timer){
             timer.stop();
-            submit.setText("ADD");
+            submit.setText("                 ADD                 ");
         }
         if(e.getSource() == complete){
             saveInput();

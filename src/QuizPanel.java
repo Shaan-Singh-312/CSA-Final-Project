@@ -39,15 +39,16 @@ public class QuizPanel extends JPanel implements ActionListener {
         } catch (FileNotFoundException e) {
             data = new VocabFile();
         }
-        setLayout(new GridLayout(3,1));
 
         //score = 0;
-        textTerm = new Label("Quiz");
+        textTerm = new Label();
         textTerm.setFont(f.APP_FONT);
+        textTerm.setPreferredSize(new Dimension(getFontMetrics(textTerm.getFont()).charWidth('m') *25, 27 * 2));
         add(textTerm);
 
         input = new JTextArea();
         input.setFont(f.APP_FONT);
+        input.setPreferredSize(new Dimension(getFontMetrics(input.getFont()).charWidth('m') *25, 27 * 5));
         input.setLineWrap(true);
         input.setWrapStyleWord(true);
         add(input);
@@ -96,6 +97,7 @@ public class QuizPanel extends JPanel implements ActionListener {
         }
         else textTerm.setText("Sorry the answer was: " + data.getDef(questionNum));
         input.setText("");
+        revalidate();
         repaint();
     }
 
