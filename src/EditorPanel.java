@@ -41,7 +41,7 @@ public class EditorPanel extends JPanel implements ActionListener {
 
         timer = new Timer(600, this);
 
-        Label textTerm = new Label("Term:        ");
+        JLabel textTerm = new JLabel("Term:        ");
         textTerm.setFont(f.APP_FONT);
         add(textTerm);
 
@@ -52,7 +52,7 @@ public class EditorPanel extends JPanel implements ActionListener {
 
         add(termEntry);
 
-        Label textDef = new Label("Definition: ");
+        JLabel textDef = new JLabel("Definition: ");
         textDef.setFont(f.APP_FONT);
         add(textDef);
 

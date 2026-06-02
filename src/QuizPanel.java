@@ -16,7 +16,7 @@ public class QuizPanel extends JPanel implements ActionListener {
     /// Location for user to input their answer
     private final JTextArea input;
     /// Gives question to the user
-    private final Label textTerm;
+    private final JLabel textTerm;
     /// Stores question data, including question and answer
     private VocabFile data;
     /// Button for user to submit their answer to be scored
@@ -40,8 +40,7 @@ public class QuizPanel extends JPanel implements ActionListener {
             data = new VocabFile();
         }
 
-        //score = 0;
-        textTerm = new Label();
+        textTerm = new JLabel("<html></html>");
         textTerm.setFont(f.APP_FONT);
         textTerm.setPreferredSize(new Dimension(getFontMetrics(textTerm.getFont()).charWidth('m') *25, 27 * 2));
         add(textTerm);
@@ -75,7 +74,7 @@ public class QuizPanel extends JPanel implements ActionListener {
     /// Shows the question at questionNum if it exists otherwise displays end screen.
     private void showQuestion(){
         if(questionNum < data.size()) {
-            textTerm.setText(data.getTerm(questionNum));
+            textTerm.setText("<html>" +data.getTerm(questionNum) + "</html>");
         }
         else {
             textTerm.setText("You have Completed the quiz");

@@ -9,7 +9,7 @@ public class UpdatePanel extends JPanel implements ActionListener {
     /// Stores the string the user enters within nameOfFileInput
     private String name;
     /// Displays instructions for user
-    private final Label text;
+    private final JLabel text;
     /// Refence to the main frame for changing current frame
     private final AppFrame frame;
 
@@ -20,8 +20,9 @@ public class UpdatePanel extends JPanel implements ActionListener {
         name = null;
         frame = f;
 
-        text = new Label("Enter the name of new data set:");
+        text = new JLabel("<html>Enter a new file name: <html>");
         text.setFont(f.APP_FONT);
+        text.setPreferredSize(new Dimension(getFontMetrics(text.getFont()).charWidth('m') *25, 27 * 2));
         add(text);
 
         nameOfFileInput = new JTextField(20);
@@ -50,8 +51,10 @@ public class UpdatePanel extends JPanel implements ActionListener {
             frame.revalidate();
             frame.repaint();
         }else{
-            text.setText("That name already exists, please enter a new name:");
+            text.setText("<html>That name already exists please enter a new name: </html>");
             nameOfFileInput.setText("");
+            revalidate();
+            repaint();
         }
 
     }
