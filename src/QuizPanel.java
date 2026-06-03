@@ -32,7 +32,7 @@ public class QuizPanel extends JPanel implements ActionListener {
     public QuizPanel(AppFrame f, File file){
         super();
         frame = f;
-        timer = new Timer(300, this);
+        timer = new Timer(500, this);
 
         try {
             data = FileManger.load(file);
