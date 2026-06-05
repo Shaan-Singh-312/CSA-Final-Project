@@ -7,8 +7,6 @@ import java.io.FileNotFoundException;
 
 /// Creates UI for the user to take the quiz and gives the user a score paced on their answers
 public class QuizPanel extends JPanel implements ActionListener {
-    // /// Stores current user score
-    //private int score;
     /// Stores number of question the user is on minus one
     private int questionNum;
     /// Refence to the main frame for changing current frame
@@ -52,15 +50,19 @@ public class QuizPanel extends JPanel implements ActionListener {
         input.setWrapStyleWord(true);
         add(input);
 
-        submitButton = new JButton("Submit Answer");
+        submitButton = new JButton("<html>Submit Answer</html>");
         submitButton.setFont(new Font("Arial", Font.BOLD, 20));
+        submitButton.setPreferredSize(new Dimension(getFontMetrics(input.getFont()).charWidth('m') *25, 30));
         submitButton.addActionListener(this);
         add(submitButton);
 
-        homeButton = new JButton("Home");
-        homeButton.setFont(new Font("Arial", Font.BOLD, 20));
-        homeButton.addActionListener(this);
 
+
+        homeButton = new JButton("<html>Return to home</html>");
+        homeButton.setFont(new Font("Arial", Font.BOLD, 20));
+        homeButton.setPreferredSize(new Dimension(getFontMetrics(input.getFont()).charWidth('m') *25, 30));
+        homeButton.addActionListener(this);
+        add(homeButton);
         StartQuiz();
     }
 
@@ -77,7 +79,8 @@ public class QuizPanel extends JPanel implements ActionListener {
             textTerm.setText("<html>" +data.getTerm(questionNum) + "</html>");
         }
         else {
-            textTerm.setText("You have Completed the quiz");
+            textTerm.setText("<html>You have completed the quiz</html>");
+            remove(homeButton);
             remove(submitButton);
             remove(input);
             add(homeButton);
@@ -91,10 +94,10 @@ public class QuizPanel extends JPanel implements ActionListener {
     private void checkAnswer(){
         String answer = input.getText().toUpperCase();
         if (answer.equals(data.getDef(questionNum).toUpperCase())){
-            textTerm.setText("Correct");
+            textTerm.setText("<html>Correct</html>");
             //score++;
         }
-        else textTerm.setText("Sorry the answer was: " + data.getDef(questionNum));
+        else textTerm.setText("<html>Sorry the answer was: " + data.getDef(questionNum) + "</html>");
         input.setText("");
         revalidate();
         repaint();

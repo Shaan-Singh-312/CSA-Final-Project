@@ -21,9 +21,14 @@ public class StartPanel extends JPanel implements ActionListener {
     public StartPanel(AppFrame f){
         super();
         frame = f;
+        String[] text = FileManger.findFiles();
+        for (int i = 0; i < text.length; i++) {
+            text[i] = "<html>" + text[i] + "</html>";
+        }
 
-        list = new JComboBox<>(FileManger.findFiles());
+        list = new JComboBox<>(text);
         list.setFont(f.APP_FONT);
+        list.setPreferredSize(new Dimension(getFontMetrics(list.getFont()).charWidth('m') *27, 30));
         add(list);
 
         button = new JButton("Next");
@@ -43,7 +48,9 @@ public class StartPanel extends JPanel implements ActionListener {
                 frame.setRevise();
 
             } else {
-                frame.setQuiz(list.getSelectedItem().toString());
+                String s = list.getSelectedItem().toString();
+                s = s.substring(6, s.length() - 7);
+                frame.setQuiz(s);
             }
         }
     }

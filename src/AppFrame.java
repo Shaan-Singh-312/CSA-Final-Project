@@ -10,7 +10,9 @@ public class AppFrame extends JFrame {
     private UpdatePanel updatePanel;
     /// Holds the current QuizPanel object on the screen, if there is not one, is null
     private QuizPanel quizPanel;
+    /// Holds the current ChoseRevisePanel object on the screen, if there is not one, is null
     private ChoseRevisePanel revisePanel;
+    /// Default font for app
     public final Font APP_FONT = new Font("Arial", Font.BOLD, 20);
 
     /// Creates a new AppFrame object with a title of "Flashcard app"
@@ -73,7 +75,7 @@ public class AppFrame extends JFrame {
     }
     /// Removes all other Panel objects and creates a new QuizPanel object
     /// Places the QuizPanel object on the screen
-    /// @param filename Name of file containing quiz data without file extension and directory name (DataFiles/Hello.txt is simply Hello)
+    /// @param filename Name of file containing quiz data without file extension and directory name (DataFiles/TestForVeryDifferentSizedWords.txt is simply Hello)
     public  void setQuiz(String filename){
         if (start != null){
             remove(start);

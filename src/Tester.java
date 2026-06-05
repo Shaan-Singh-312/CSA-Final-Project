@@ -7,14 +7,14 @@ import java.util.Scanner;
 
 public class Tester{
     public static void main() throws FileNotFoundException{
-        save(load(new File("DataFiles/morphemes.txt")),new File("DataFiles/morphemes.txt"));
+        save(load(new File("DataFiles/Pokemon.csv")),new File("DataFiles/Pokemon.txt"));
     }
     public static VocabFile load(File f) throws FileNotFoundException {
         Scanner s = new Scanner(f);
         VocabFile voacb = new VocabFile();
         while(s.hasNextLine()){
-            String[] data = s.nextLine().split("[|]");
-            voacb.add(data[0], data[1]);
+            String[] data = s.nextLine().split(",");
+            voacb.add(data[1], data[2] + "/" + data[3]);
         }
         s.close();
         return voacb;

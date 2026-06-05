@@ -16,7 +16,7 @@ public class VocabFile  {
     /// @param term Key of new item
     /// @param def value of new item
     public void add(String term, String def){
-        file.add(new String[] {term, def});
+        if (!this.containsPair(new String[]{term, def}) || !(this.containsOneOf(new String[]{term, def}))) file.add(new String[] {term, def});
     }
 
     /// Randomizes contents of vocab file
@@ -69,6 +69,28 @@ public class VocabFile  {
                 i--;
             }
         }
+    }
+
+    /// Checks is the Vocabfile contains the key value pair in arr
+    /// @param arr key value pair being searched for
+    public boolean containsPair(String[] arr){
+        for (String[] wordPair : file){
+            if(wordPair[0].equals(arr[0]) &&  (wordPair[1].equals(arr[1]))){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /// Checks is the Vocabfile contains the key value pair in arr
+    /// @param arr key value pair being searched for
+    public boolean containsOneOf(String[] arr){
+        for (String[] wordPair : file){
+            if(wordPair[0].equals(arr[0]) ||  (wordPair[1].equals(arr[1]))){
+                return true;
+            }
+        }
+        return false;
     }
 
     /// Displays VocabFile in a readable format of (Key,Value), (Key, Value), ...

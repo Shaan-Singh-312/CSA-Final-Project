@@ -62,39 +62,43 @@ public class EditorPanel extends JPanel implements ActionListener {
 
         add(defEntry);
 
-        submit = new JButton("                 ADD                 ");
+        submit = new JButton("<html>ADD</html>");
         submit.setFont(f.APP_FONT);
-        submit.setLayout(new GridLayout(1,2));
+        submit.setPreferredSize(new Dimension(getFontMetrics(submit.getFont()).charWidth('m') *25, 27));
         submit.addActionListener(this);
         add(submit);
 
         complete = new JButton("Finalize and return to start");
         complete.setFont(f.APP_FONT);
-        complete.setLayout(new GridLayout(1,2));
+        complete.setPreferredSize(new Dimension(getFontMetrics(complete.getFont()).charWidth('m') *17, 27));
         complete.addActionListener(this);
         add(complete);
     }
 
 
-    /// Detects button clicks and timer pulses to save data and return to homepage
-    /// Can destroy current object
-
-
+    /// Used to validate user input, changes text shown on button and starts timer
     private void saveInput() {
         if (termEntry.getText().isEmpty() && defEntry.getText().isEmpty()) {
-            submit.setText("Invalid Please enter a term and def");
+            submit.setText("<html>Invalid Please enter a term and def</html>");
         } else if (termEntry.getText().isEmpty()) {
-            submit.setText("Invalid Please enter a term");
+            submit.setText("<html>Invalid Please enter a term</html>");
         } else if (defEntry.getText().isEmpty()) {
-            submit.setText("Invalid Please enter a def");
+            submit.setText("<html>Invalid Please enter a def</html>");
         }else {
+            if(data.containsOneOf(new String[]{termEntry.getText(), defEntry.getText()})) {
+                submit.setText("<html>Invalid Please enter a new value</html>");
+            }
+            else{
                 data.add(termEntry.getText(), defEntry.getText());
-                submit.setText("                 ADDED               ");
+                submit.setText("<html>ADDED</html>");
+            }
         }
         termEntry.setText("");
         defEntry.setText("");
         timer.start();
     }
+    /// Detects button clicks and timer pulses to save data and return to homepage
+    /// Can destroy current object
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == submit) {
@@ -102,7 +106,7 @@ public class EditorPanel extends JPanel implements ActionListener {
         }
         if(e.getSource() == timer){
             timer.stop();
-            submit.setText("                 ADD                 ");
+            submit.setText("<html>ADD<html>");
         }
         if(e.getSource() == complete){
             saveInput();
@@ -110,7 +114,7 @@ public class EditorPanel extends JPanel implements ActionListener {
                 FileManger.save(data, new File("DataFiles/" + name+ ".txt"));
                 frame.setStart();
             } catch (RuntimeException ex) {
-                complete.setText("Error Occurred, Click to try again");
+                complete.setText("<html>Error Occurred, Click to try again</html>");
             }
         }
     }
