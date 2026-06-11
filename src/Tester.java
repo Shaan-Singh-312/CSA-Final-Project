@@ -14,7 +14,11 @@ public class Tester{
         VocabFile voacb = new VocabFile();
         while(s.hasNextLine()){
             String[] data = s.nextLine().split(",");
-            voacb.add(data[1], data[2] + "/" + data[3]);
+            if(data[4].equals("\" \"")){
+                voacb.add(data[1].substring(1,data[1].length() -1), data[3].substring(1,data[3].length() -1));
+            }else{
+                voacb.add(data[1].substring(1,data[1].length() -1), data[3].substring(1,data[3].length() -1) + "/" + data[4].substring(1,data[4].length() -1));
+            }
         }
         s.close();
         return voacb;
