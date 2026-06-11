@@ -42,9 +42,9 @@ public class StartPanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(button) && list.getSelectedItem() != null){
-            if ((list.getSelectedItem().toString()).equals("Add New ++")){
+            if ((list.getSelectedItem().toString()).equals("<html>Add New ++</html>")){
                 frame.setEditor();
-            } else if (list.getSelectedItem().toString().equals("Update Old")) {
+            } else if (list.getSelectedItem().toString().equals("<html>Update Old</html>")) {
                 frame.setRevise();
 
             } else {
