@@ -8,3 +8,4 @@ A curvature that follows Euclidean geometry| Flat Curvature
 A system of stars, stellar remnants, interstellar gas, dust, and dark matter bound together by gravity|Galaxy
 Occurs when a massive celestial body — such as a galaxy cluster — causes a sufficient curvature of spacetime for the path of light around it to be visibly bent, as if by a lens.|Gravitational Lensing
 A region of gravitational attraction in intergalactic space and the apparent central gravitational point of the Laniakea Supercluster of galaxies|Great Attractor
+A vast, elongated supercluster or filament of gravitationally bound galaxies that stretches across hundreds of millions or billions of light-years|Great Walls
